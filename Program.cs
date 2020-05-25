@@ -1,6 +1,10 @@
-﻿using System;
+﻿using EvilDICOM.Core;
+using EvilDICOM.Core.Extensions;
+using EvilDICOM.Core.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +77,10 @@ namespace DicomToBitmapConverter
             {
                 Console.WriteLine("pomijam: {0}", file);
             }
+
+            var dcm = DICOMObject.Read(file);
+            var pxSpacing = dcm.FindFirst(TagHelper.PixelSpacing);
+            Console.WriteLine("Rozmiar piksela: {0}mm x {1}mm", pxSpacing.DData_[0], pxSpacing.DData_[1]);
 
             gdcm.Bitmap bmjpeg2000 = pxmap2jpeg2000(reader.GetPixmap());
             Bitmap[] X = gdcmBitmap2Bitmap(bmjpeg2000);
