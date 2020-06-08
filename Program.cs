@@ -1,13 +1,7 @@
 ﻿using EvilDICOM.Core;
-using EvilDICOM.Core.Extensions;
 using EvilDICOM.Core.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DicomToBitmapConverter
 {
@@ -90,7 +84,6 @@ namespace DicomToBitmapConverter
                 String name = String.Format("{0}_warstwa{1}.bmp", file, i);
                 X[i].Save(name);
                 Console.WriteLine("konwersja do: {0}", name);
-                Console.ReadKey();
             }
         }
     }
